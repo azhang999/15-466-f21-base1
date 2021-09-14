@@ -1,8 +1,8 @@
-# (TODO: your game's title)
+# Slime
 
-Author: (TODO: your name)
+Author: Aria Zhang
 
-Design: (TODO: In two sentences or fewer, describe what is new and interesting about your game.)
+Design: You are down in the mines when you spot many slimes around you. Clear out the slimes by pushing rocks at them!
 
 Screen Shot:
 
@@ -10,13 +10,11 @@ Screen Shot:
 
 How Your Asset Pipeline Works:
 
-(TODO: describe the steps in your asset pipeline, from source files to tiles/backgrounds/whatever you upload to the PPU466.)
+Create a 16x16 pixel png file => put it in the dist folder => parse out all the colors used in the png, create a mapping between each color and a tile layout. Then create a sprite for each color and layer them ontop of each other.
 
 How To Play:
 
-(TODO: describe the controls and (if needed) goals/strategy.)
-
-Sources: (TODO: list a source URL for any assets you did not create yourself. Make sure you have a license for the asset.)
+Use WASD to move, push rocks to clear out the harmless slimes.
 
 This game was built with [NEST](NEST.md).
 
