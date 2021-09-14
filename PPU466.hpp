@@ -24,6 +24,8 @@ struct PPU466 {
 	//The PPU's screen is 256x240:
 	// the origin -- pixel (0,0) -- is in the lower left
 	enum : uint32_t {
+        //screen is not square
+        //sprite wrap above the top of the screen
 		ScreenWidth = 256,
 		ScreenHeight = 240
 	};
@@ -57,6 +59,10 @@ struct PPU466 {
 	//  bit1_at_2_7 = (tile.bit1[7] >> 2) & 1;
 	//  color_index_at_2_7 = (bit1_at_2_7 << 1) | bit0_at_2_7;
 	struct Tile {
+        Tile() {
+            std::fill(bit0.begin(), bit0.end(), 0);
+            std::fill(bit1.begin(), bit1.end(), 0);
+        }
 		std::array< uint8_t, 8 > bit0; //<-- controls bit 0 of the color index
 		std::array< uint8_t, 8 > bit1; //<-- controls bit 1 of the color index
 	};
@@ -120,6 +126,9 @@ struct PPU466 {
 	//   or behind (priority = 1) the background
 	//
 	struct Sprite {
+        // why sprites are wrapping
+        // 240 vs 256 - where sprite can hide before it wraps
+        // character wraps because f truncation of coordinates
 		uint8_t x = 0; //x position. 0 is the left edge of the screen.
 		uint8_t y = 240; //y position. 0 is the bottom edge of the screen. >= 240 is off-screen
 		uint8_t index = 0; //index into tile table
